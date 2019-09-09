@@ -70,16 +70,24 @@ Vagrant.configure("2") do |config|
 	 Write-Host "Installing 2015 C++ Redist"
 	 ./vc_redist.x64.exe /q /norestart
 	 
+	 Write-Host "Installing .NET"
+	 ./NDP472-DevPack-ENU.exe /q /norestart
+	 
 	 Write-Host "Starting Chrome Install"
 	 ./ChromeStandaloneSetup64.exe /silent /install
 	 
 	 Write-Host "Starting tortoisehg Install"
 	 msiexec /i tortoisehg-5.0.2-x64.msi /quiet /qn /norestart /log tortoisehg_install.log 	 	
 	 
+	 Write-Host "Installing mRemote"
+	 msiexec /i mRemoteNG-Installer-1.76.20.24615.msi /quiet /qn /norestart /log mRemoteNG_install.log 	 	
+	 
 	 Write-Host "Starting Notepad++ Install"
 	 ./npp.7.5.4.Installer.exe /S
 	 		 
 	 dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
+	 
+	 
 	 	 
    SHELL
    

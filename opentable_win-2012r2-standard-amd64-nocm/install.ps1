@@ -37,7 +37,7 @@ copy C:\software\verified\en_sql_server_2014_developer_edition_with_service_pack
 
 New-NetFirewallRule -DisplayName '1433' -Profile 'Any' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 1433
  
-d:\setup.exe /ConfigurationFile=C:\software\verified\ConfigurationFile.ini
+d:\setup.exe /ConfigurationFile=C:\vagrant\install_files\ConfigurationFile.ini
  
 #sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'C:\aaa_development\mssql\WoolLive.mdf','C:\aaa_development\mssql\WoolLive_log.ldf'"
 #sqlcmd -S. -E -Q "sp_attach_db 'MercariDirectNightly', 'C:\aaa_development\mssql\MercariDirectNightly.mdf','C:\aaa_development\mssql\MercariDirectNightly_log.LDF'"

@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "D:/aaa_development", "C:/aaa_development"
+  config.vm.synced_folder "F:/software", "C:/software"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -87,7 +88,13 @@ Vagrant.configure("2") do |config|
 	 		 
 	 dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
 	 
+	 Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=853016 -OutFile ./SQLServer2017-SSEI-Dev.exe
+	 ./SQLServer2017-SSEI-Dev.exe /q /IACCEPTSQLSERVERLICENSETERMS
 	 
+	 copy C:\software\verified\en_sql_server_2014_developer_edition_with_service_pack_2_x64_dvd_8967821.iso c:\sqlsvr.iso
+	 Mount-DiskImage C:\sqlsvr.iso -PassThru
+
+     d:\setup.exe /q /ACTION=Install /FEATURES=SQL /INSTANCENAME=MSSQLSERVER /AGTSVCACCOUNT="NT AUTHORITY\Network Service" /IACCEPTSQLSERVERLICENSETERMS
 	 	 
    SHELL
    

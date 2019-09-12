@@ -45,6 +45,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   config.vm.synced_folder "D:/aaa_development", "C:/aaa_development"
   config.vm.synced_folder "F:/software", "C:/software"
+  config.vm.synced_folder ".", "c:\vagrant"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -88,13 +89,22 @@ Vagrant.configure("2") do |config|
 	 		 
 	 dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
 	 
-	 Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=853016 -OutFile ./SQLServer2017-SSEI-Dev.exe
-	 ./SQLServer2017-SSEI-Dev.exe /q /IACCEPTSQLSERVERLICENSETERMS
+	 DISM /Online /Enable-Feature /FeatureName:NetFx3 /All 
+	 
+	 DISM /online /Enable-Feature /FeatureName:TelnetClient
+	 #Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=853016 -OutFile ./SQLServer2017-SSEI-Dev.exe
+	 #./SQLServer2017-SSEI-Dev.exe /q /IACCEPTSQLSERVERLICENSETERMS
 	 
 	 copy C:\software\verified\en_sql_server_2014_developer_edition_with_service_pack_2_x64_dvd_8967821.iso c:\sqlsvr.iso
 	 Mount-DiskImage C:\sqlsvr.iso -PassThru
 
-     d:\setup.exe /q /ACTION=Install /FEATURES=SQL /INSTANCENAME=MSSQLSERVER /AGTSVCACCOUNT="NT AUTHORITY\Network Service" /IACCEPTSQLSERVERLICENSETERMS
+	New-NetFirewallRule -DisplayName '1433' -Profile 'Any' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 1433
+
+     #d:\setup.exe /q /ACTION=Install /FEATURES=SQL /INSTANCENAME=MSSQLSERVER /AGTSVCACCOUNT="NT AUTHORITY\Network Service" /IACCEPTSQLSERVERLICENSETERMS
+     d:\setup.exe /ConfigurationFile=C:\software\verified\ConfigurationFile.ini
+	 
+	 sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'C:\aaa_development\mssql\WoolLive.mdf','C:\aaa_development\mssql\WoolLive_log.ldf'"
+	sqlcmd -S. -E -Q "sp_attach_db 'MercariDirectNightly', 'C:\aaa_development\mssql\MercariDirectNightly.mdf','C:\aaa_development\mssql\MercariDirectNightly_log.LDF'"
 	 	 
    SHELL
    

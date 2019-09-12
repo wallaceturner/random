@@ -7,5 +7,4 @@ $apps = "F:\software\verified"
 & "$apps\flux-setup.exe" /S
 
 
-sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'D:\aaa_development\mssql\WoolLive.mdf','D:\aaa_development\mssql\WoolLive_log.ldf'"
-sqlcmd -S. -E -Q "sp_attach_db 'MercariDirectNightly', 'D:\aaa_development\mssql\MercariDirectNightly.mdf','D:\aaa_development\mssql\MercariDirectNightly_log.LDF'"
+Invoke-WebRequest -Uri https://us.download.nvidia.com/GFE/GFEClient/3.20.0.118/GeForce_Experience_v3.20.0.118.exe -OutFile ./GeForce_Experience_v3.20.0.118.exe

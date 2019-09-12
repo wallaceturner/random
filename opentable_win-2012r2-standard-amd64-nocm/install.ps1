@@ -20,21 +20,26 @@ cd C:/aaa_development/downloads
 		 
  dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
  
- DISM /Online /Enable-Feature /FeatureName:NetFx3 /All 
+ DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
  
- DISM /online /Enable-Feature /FeatureName:TelnetClient
+ 
+ DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart
+ 
+ 
  #Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=853016 -OutFile ./SQLServer2017-SSEI-Dev.exe
  #./SQLServer2017-SSEI-Dev.exe /q /IACCEPTSQLSERVERLICENSETERMS
  
- copy C:\software\verified\en_sql_server_2014_developer_edition_with_service_pack_2_x64_dvd_8967821.iso c:\sqlsvr.iso
+ 
+Get-ChildItem -Path C:\software\verified\
+copy C:\software\verified\en_sql_server_2014_developer_edition_with_service_pack_2_x64_dvd_8967821.iso c:\sqlsvr.iso
+
  Mount-DiskImage C:\sqlsvr.iso -PassThru
 
 New-NetFirewallRule -DisplayName '1433' -Profile 'Any' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 1433
-
- #d:\setup.exe /q /ACTION=Install /FEATURES=SQL /INSTANCENAME=MSSQLSERVER /AGTSVCACCOUNT="NT AUTHORITY\Network Service" /IACCEPTSQLSERVERLICENSETERMS
- #d:\setup.exe /ConfigurationFile=C:\software\verified\ConfigurationFile.ini
  
- #sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'C:\aaa_development\mssql\WoolLive.mdf','C:\aaa_development\mssql\WoolLive_log.ldf'"
+d:\setup.exe /ConfigurationFile=C:\software\verified\ConfigurationFile.ini
+ 
+#sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'C:\aaa_development\mssql\WoolLive.mdf','C:\aaa_development\mssql\WoolLive_log.ldf'"
 #sqlcmd -S. -E -Q "sp_attach_db 'MercariDirectNightly', 'C:\aaa_development\mssql\MercariDirectNightly.mdf','C:\aaa_development\mssql\MercariDirectNightly_log.LDF'"
 
 $Password = Read-Host -AsSecureString

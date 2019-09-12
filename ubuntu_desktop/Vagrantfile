@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "opentable/win-2012r2-standard-amd64-nocm"  
+  config.vm.box = "fasmat/ubuntu1804-desktop"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.22.10"
+  # config.vm.network "private_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "D:/aaa_development", "C:/aaa_development"
+  # config.vm.synced_folder "../data", "/vagrant_data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -64,40 +64,8 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-   config.vm.provision "shell", inline: <<-SHELL
-     cd C:/aaa_development/downloads	 
-	 
-	 Write-Host "Installing 2015 C++ Redist"
-	 ./vc_redist.x64.exe /q /norestart
-	 
-	 Write-Host "Installing .NET"
-	 ./NDP472-DevPack-ENU.exe /q /norestart
-	 
-	 Write-Host "Starting Chrome Install"
-	 ./ChromeStandaloneSetup64.exe /silent /install
-	 
-	 Write-Host "Starting tortoisehg Install"
-	 msiexec /i tortoisehg-5.0.2-x64.msi /quiet /qn /norestart /log tortoisehg_install.log 	 	
-	 
-	 Write-Host "Installing mRemote"
-	 msiexec /i mRemoteNG-Installer-1.76.20.24615.msi /quiet /qn /norestart /log mRemoteNG_install.log 	 	
-	 
-	 Write-Host "Starting Notepad++ Install"
-	 ./npp.7.5.4.Installer.exe /S
-	 		 
-	 dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
-	 
-	 
-	 	 
-   SHELL
-   
-   # trigger reload
-  config.vm.provision :reload
-
-# execute code after reload
-  config.vm.provision "shell", inline: <<-SHELL
-     echo $(date) >> ~/rebootexample
-	 Write-Host "Starting manual install of Pulse Secure"
-	 msiexec /i ps-pulse-win-9.0r4.0-b1731-64bitinstaller.msi /quiet /qn /norestart /log pulse_install.log 
-  SHELL
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   apt-get install -y apache2
+  # SHELL
 end

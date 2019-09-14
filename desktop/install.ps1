@@ -1,13 +1,22 @@
 #./vs_community__217969693.1566954722.exe /q
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 
+cd "F:\software\desktop"
 
-$apps = "F:\software\desktop"
-Invoke-WebRequest -Uri https://www.fosshub.com/ConEmu.html?dwl=ConEmuSetup.190714.exe  -OutFile ./ConEmuSetup.190714.exe
-./ConEmuSetup.190714.exe /p:x64 /q
+& "./ConEmuSetup.190714.exe" /p:x64 /q
 
 Invoke-WebRequest -Uri https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.msi -OutFile $apps/vagrant_2.2.5_x86_64.msi
 
-& "$apps\flux-setup.exe" /S
+& "./flux-setup.exe" /S
 
+& "./VirtualBox-6.0.10-132072-Win.exe" --silent
 
-Invoke-WebRequest -Uri https://us.download.nvidia.com/GFE/GFEClient/3.20.0.118/GeForce_Experience_v3.20.0.118.exe -OutFile ./GeForce_Experience_v3.20.0.118.exe
+./SSMS-Setup-ENU.exe /S
+
+#Invoke-WebRequest -Uri https://us.download.nvidia.com/GFE/GFEClient/3.20.0.118/GeForce_Experience_v3.20.0.118.exe -OutFile ./GeForce_Experience_v3.20.0.118.exe
+
+#msiexec /qn /i C:\temp\vagrant_2.2.5_x86_64.msi
+
+msiexec /i "$./tortoisehg-5.0.2-x64.msi" /quiet /qn /norestart
+
+msiexec /qn /l* node-log.txt /i node-v10.16.3-x64.msi

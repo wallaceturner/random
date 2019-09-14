@@ -1,29 +1,38 @@
-cd C:/aaa_development/downloads	 
+#!!install the first windows update
+
+cd C:\software\verified	 
+
+./Windows8.1-KB2919355-x64.msu
+ 
+ #REBOOT
  
  Write-Host "Installing 2015 C++ Redist"
  ./vc_redist.x64.exe /q /norestart
  
- Write-Host "Installing .NET"
- ./NDP472-DevPack-ENU.exe /q /norestart
- 
  Write-Host "Starting Chrome Install"
  ./ChromeStandaloneSetup64.exe /silent /install
  
+ #add the following to log msiexec calls: /log tortoisehg_install.log 	 	
  Write-Host "Starting tortoisehg Install"
- msiexec /i tortoisehg-5.0.2-x64.msi /quiet /qn /norestart /log tortoisehg_install.log 	 	
+ msiexec /i tortoisehg-5.0.2-x64.msi /quiet /qn /norestart 
  
  Write-Host "Installing mRemote"
- msiexec /i mRemoteNG-Installer-1.76.20.24615.msi /quiet /qn /norestart /log mRemoteNG_install.log 	 	
+ msiexec /i mRemoteNG-Installer-1.76.20.24615.msi /quiet /qn /norestart
  
  Write-Host "Starting Notepad++ Install"
- ./npp.7.5.4.Installer.exe /S
+ ./npp.7.7.1.Installer.x64.exe /S
 		 
  dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
  
- DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
+DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
  
  
- DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart
+DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart
+
+#REBOOT
+
+Write-Host "Installing .NET"
+ ./NDP472-DevPack-ENU.exe /q /norestart
  
  
  #Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=853016 -OutFile ./SQLServer2017-SSEI-Dev.exe
@@ -42,6 +51,6 @@ d:\setup.exe /ConfigurationFile=C:\vagrant\install_files\ConfigurationFile.ini
 #sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'C:\aaa_development\mssql\WoolLive.mdf','C:\aaa_development\mssql\WoolLive_log.ldf'"
 #sqlcmd -S. -E -Q "sp_attach_db 'MercariDirectNightly', 'C:\aaa_development\mssql\MercariDirectNightly.mdf','C:\aaa_development\mssql\MercariDirectNightly_log.LDF'"
 
-$Password = Read-Host -AsSecureString
-New-LocalUser "vooos" -Password $Password -FullName "John Doe" -Description "Description of this account."
-NET USER vooos $password /ADD /y
+#$Password = Read-Host -AsSecureString
+#New-LocalUser "vooos" -Password $Password -FullName "John Doe" -Description "Description of this account."
+#NET USER vooos $password /ADD /y

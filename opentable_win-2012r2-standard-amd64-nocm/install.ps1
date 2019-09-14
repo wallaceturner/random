@@ -1,4 +1,7 @@
 #!!install the first windows update
+#git clone https://github.com/joefitzgerald/packer-windows.git
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 cd C:\software\verified	 
 

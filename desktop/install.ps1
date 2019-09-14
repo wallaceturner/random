@@ -1,3 +1,9 @@
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+choco install git sourcetree -y
+choco install packer -y
+
+
 #./vs_community__217969693.1566954722.exe /q
 Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 

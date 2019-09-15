@@ -1,5 +1,14 @@
-#!!install the first windows update
+
+#how to create a base box
 #git clone https://github.com/joefitzgerald/packer-windows.git
+#copy Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO into iso folder
+#packer build -var iso_url=./iso/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.iso windows_2016.json
+#vagrant box add windows_2016 windows_2016_virtualbox.box
+#mkdir D:\vagrant\windows_2016
+#cd D:\vagrant\windows_2016
+#vagrant init windows_2016
+#vagrant up
+
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 

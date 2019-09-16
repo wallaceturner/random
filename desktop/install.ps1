@@ -1,5 +1,5 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
- Set-ExecutionPolicy RemoteSigned -f
+Set-ExecutionPolicy RemoteSigned -f
  
 choco feature enable -n allowGlobalConfirmation
 choco install git sourcetree tortoisehg -y
@@ -9,7 +9,7 @@ choco install telegram -y
 choco install 7zip processhacker -y
 choco install google-backup-and-sync -y
 choco install obs-studio -y
-choco install mongodb studio3t
+choco install mongodb studio3t sql-server-management-studio mremoteng
 
 #./vs_community__217969693.1566954722.exe /q
 Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All

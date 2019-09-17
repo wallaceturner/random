@@ -23,6 +23,8 @@ Vagrant.configure("2") do |config|
      # Customize the amount of memory on the VM:
      vb.memory = "4096"	
 	vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional'] 
+	#add cd drive
+	#vb.customize ["storageattach", :id, "--storagectl", "IDE Controller","--port", "0", "--device", "1", "--type", "dvddrive", "--medium", "emptydrive"]
    end
   
   config.vm.provision "shell", path: "install.ps1" 

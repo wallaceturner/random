@@ -15,6 +15,7 @@ choco install 7zip processhacker -y
 choco install google-backup-and-sync -y
 choco install obs-studio -y
 choco install mongodb studio3t sql-server-management-studio mremoteng conemu f.lux resharper
+choco install dotnetcore-sdk --version=2.2.0
 
 F:\software\desktop\MSBuild.Community.Tasks.v1.5.0.235.msi
 
@@ -26,3 +27,5 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 
 #Invoke-WebRequest -Uri https://us.download.nvidia.com/GFE/GFEClient/3.20.0.118/GeForce_Experience_v3.20.0.118.exe -OutFile ./GeForce_Experience_v3.20.0.118.exe
 
+#mercari
+netsh http add urlacl url=https://+:443/ user=$env:UserDomain\$env:UserName

@@ -2,6 +2,8 @@
 #git clone https://github.com/joefitzgerald/packer-windows.git
 #copy Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO into iso folder
 #packer build -var iso_url=./iso/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.iso windows_2016.json
+#alternatively you can run simply with the filename to have packer download an image e.g.
+#packer build windows_2012_r2.json
 #vagrant box add windows_2016 windows_2016_virtualbox.box
 #mkdir D:\vagrant\windows_2016
 #cd D:\vagrant\windows_2016

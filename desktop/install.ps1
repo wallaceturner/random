@@ -1,3 +1,5 @@
+DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
+
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 Set-ExecutionPolicy RemoteSigned -f
 
@@ -8,13 +10,14 @@ Set-ExecutionPolicy RemoteSigned -f
 
 choco feature enable -n allowGlobalConfirmation
 choco install git sourcetree tortoisehg -y
+choco install winscp keepass
 choco install packer -y
 choco install nodejs-lts -y
 choco install telegram -y
 choco install 7zip processhacker -y
 choco install google-backup-and-sync -y
 choco install obs-studio -y
-choco install mongodb studio3t sql-server-management-studio mremoteng conemu f.lux resharper
+choco install mongodb studio3t sql-server-management-studio mremoteng conemu f.lux resharper nordvpn
 choco install dotnetcore-sdk --version=2.2.0
 
 F:\software\desktop\MSBuild.Community.Tasks.v1.5.0.235.msi
@@ -29,3 +32,5 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 
 #mercari
 netsh http add urlacl url=https://+:443/ user=$env:UserDomain\$env:UserName
+
+New-NetFirewallRule -DisplayName '8080' -Profile 'Any' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8080

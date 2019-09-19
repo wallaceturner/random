@@ -39,3 +39,6 @@ New-NetFirewallRule -DisplayName '1433' -Profile 'Any' -Direction Inbound -Actio
  
 #sqlcmd -S. -E -Q "sp_attach_db 'WoolLive', 'C:\aaa_development\mssql\WoolLive.mdf','C:\aaa_development\mssql\WoolLive_log.ldf'"
 #sqlcmd -S. -E -Q "sp_attach_db 'MercariDirectNightly', 'C:\aaa_development\mssql\MercariDirectNightly.mdf','C:\aaa_development\mssql\MercariDirectNightly_log.LDF'"
+
+#manual config
+#https://stackoverflow.com/questions/7694/how-do-i-enable-msdtc-on-sql-server

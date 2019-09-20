@@ -36,4 +36,4 @@ netsh http add urlacl url=https://+:443/ user=$env:UserDomain\$env:UserName
 New-NetFirewallRule -DisplayName '8080' -Profile 'Any' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8080
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.20`t fexglobitefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.22`t fexglobetefow01.fglau.com"
-Add-Content C:\Windows\System32\drivers\etc\hosts "110.160.4.10`t fexglobfow01.fglau.com"
+Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.10`t fexglobfow01.fglau.com"

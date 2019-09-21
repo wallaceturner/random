@@ -28,13 +28,12 @@ Vagrant.configure("2") do |config|
    end
   
   config.vm.provision "shell", path: "install.ps1" 
-# trigger reload
-  #config.vm.provision :reload
+
+# trigger reload (reboot)
+ 
+  config.vm.provision :reload
+
+# execute code after reload  
+  config.vm.provision "shell", path: "install.ps1", args: [ "2" ]
   
-# execute code after reload
-  #config.vm.provision "shell", inline: <<-SHELL
- #    echo $(date) >> ~/rebootexample
-#	 Write-Host "Starting manual install of Pulse Secure"
-	# msiexec /i ps-pulse-win-9.0r4.0-b1731-64bitinstaller.msi /quiet /qn /norestart /log pulse_install.log 
- # SHELL
 end

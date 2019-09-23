@@ -37,3 +37,5 @@ New-NetFirewallRule -DisplayName '8080' -Profile 'Any' -Direction Inbound -Actio
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.20`t fexglobitefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.22`t fexglobetefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.10`t fexglobfow01.fglau.com"
+cp F:\Dropbox\docs\confCons.xml C:\Users\vagrant\AppData\Roaming\mRemoteNG
+cp F:\Dropbox\docs\confCons.xml F:\software\verified

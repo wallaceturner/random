@@ -27,7 +27,7 @@ if ($step -eq 1){
 	dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
 	DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
 	DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart	
-	New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\Reliability' -Force | New-ItemProperty -Name ShutdownReasonOn -Value 0 -Force | Out-Null	
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\Reliability' -Force | New-ItemProperty -Name ShutdownReasonOn -Value 0 -Force | Out-Null		
 }
 elseif ($step -eq 2){
 	Write-Host("Step 2");	 
@@ -45,6 +45,7 @@ elseif ($step -eq 2){
 	Remove-Item C:\sqlsvr.iso
 
 	New-NetFirewallRule -DisplayName '1433' -Profile 'Any' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 1433
+	cp c:\software\verified\confCons.xml C:\Users\vagrant\AppData\Roaming\mRemoteNG
 	
 	ipconfig
 }

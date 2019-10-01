@@ -19,6 +19,7 @@ choco install google-backup-and-sync -y
 choco install obs-studio -y
 choco install mongodb studio3t sql-server-management-studio mremoteng conemu f.lux resharper nordvpn
 choco install dotnetcore-sdk --version=2.2.0
+choco install visualstudio2019community --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 
 F:\software\desktop\MSBuild.Community.Tasks.v1.5.0.235.msi
 

@@ -3,6 +3,7 @@ DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 Set-ExecutionPolicy RemoteSigned -f
 
+[Environment]::SetEnvironmentVariable("MSSQL_CONN_STR", "database=FEX_MDS;server=192.168.22.10;User Id=sa;Password=P@ssword1", "User")
 [Environment]::SetEnvironmentVariable("X_STREAM_CLIENT_SDK", "D:\aaa_development\x_stream_client_sdk", "User")
 [Environment]::SetEnvironmentVariable("TSMRMSGFILE", "D:\aaa_development\x_stream_client_sdk\bin\tsmr.msg", "User")
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\aaa_development\x_stream_client_sdk\bin", "Machine")
@@ -40,3 +41,5 @@ Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.22`t fexglobetefow01
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.10`t fexglobfow01.fglau.com"
 cp F:\Dropbox\docs\confCons.xml C:\Users\vagrant\AppData\Roaming\mRemoteNG
 cp F:\Dropbox\docs\confCons.xml F:\software\verified
+
+npm i aurelia-cli@0.34 -g

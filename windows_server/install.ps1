@@ -21,7 +21,7 @@ if ($step -eq 1){
 	Set-ExecutionPolicy RemoteSigned -f
 
 	choco feature enable -n allowGlobalConfirmation
-	choco install tortoisehg vcredist140 googlechrome mremoteng notepadplusplus autologon
+	choco install tortoisehg vcredist140 googlechrome mremoteng notepadplusplus autologon 7zip
 
 	autologon $env:UserName $env:UserDomain vagrant
 	dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart

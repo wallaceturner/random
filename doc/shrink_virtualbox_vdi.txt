@@ -1,0 +1,7 @@
+#run on guest
+dd if=/dev/zero of=/var/tmp/bigemptyfile bs=4096k ; rm /var/tmp/bigemptyfile
+sudo poweroff
+
+
+#run on host (powershell)
+."C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifymedium --compact D:\virtual_box_vdis\foo.vdi

@@ -1,7 +1,7 @@
 #install chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-[Environment]::SetEnvironmentVariable("MSSQL_CONN_STR", "database=FEX_MDS;server=192.168.22.10;User Id=sa;Password=P@ssword1", "User")
+[Environment]::SetEnvironmentVariable("MSSQL_CONN_STR", "server=192.168.73.10;User Id=sa;Password=P@ssword1", "User")
 [Environment]::SetEnvironmentVariable("X_STREAM_CLIENT_SDK", "D:\aaa_development\x_stream_client_sdk", "User")
 [Environment]::SetEnvironmentVariable("TSMRMSGFILE", "D:\aaa_development\x_stream_client_sdk\bin\tsmr.msg", "User")
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\aaa_development\x_stream_client_sdk\bin", "Machine")
@@ -9,11 +9,14 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 choco feature enable -n allowGlobalConfirmation
 choco install notepadplusplus googlechrome -y
-choco install msbuild.communitytasks skype git sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net
+choco install vscode msbuild.communitytasks skype git sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui
 choco install virtualbox vagrant -y
 choco install visualstudio2019community --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 
+#Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/347.88/347.88-desktop-win8-win7-winvista-64bit-international-whql.exe -OutFile ./347.88-desktop-win8-win7-winvista-64bit-international-whql.exe
+
 #optional
+choco install androidstudio
 choco install obs-studio -y
 choco install mongodb studio3t  
 choco install dotnetcore-sdk --version=2.2.0
@@ -41,6 +44,7 @@ cat .\.ssh\id_rsa.pub
 #start Pageant (from notification menu area) and select 'Add Key' and select the ppk from previous step
 
 #vagrant
+#if after calling 'vagrant up' it launches a new VM instead of the existing VM you need to tell vagrant the id of the VM. 
 https://superuser.com/questions/679457/vagrant-virtualbox-vm-is-initializing-new-instead-of-loading-the-existing-vm-aft/682149#682149
 
 #mercari
@@ -56,3 +60,9 @@ cp F:\Dropbox\docs\confCons.xml F:\software\verified
 
 npm i aurelia-cli@0.34 -g
 npm install -g @angular/cli
+
+
+#add SSL cert using D:\Program Files2\httpconfig\HttpConfig.exe
+
+#delete .vs folder if you get red underlines in visual studio
+https://stackoverflow.com/questions/21098333/visual-studio-compiles-fine-but-still-shows-red-lines

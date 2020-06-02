@@ -1,3 +1,5 @@
+Set-ExecutionPolicy RemoteSigned
+
 #install chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
@@ -22,6 +24,11 @@ choco install mongodb studio3t
 choco install dotnetcore-sdk --version=2.2.0
 choco install sql-server-management-studio
 
+
+code --install-extension ms-vscode-remote.vscode-remote-extensionpack
+
+certutil -f -importpfx -user F:\Dropbox\docs\certificates\investi.com.au\client.pfx
+
 #required for FexOnline sln
 F:\software\desktop\PC-Span-x64593.msi
 F:\software\desktop\SpanCom593-x64.msi
@@ -45,7 +52,11 @@ cat .\.ssh\id_rsa.pub
 
 #vagrant
 #if after calling 'vagrant up' it launches a new VM instead of the existing VM you need to tell vagrant the id of the VM. 
-https://superuser.com/questions/679457/vagrant-virtualbox-vm-is-initializing-new-instead-of-loading-the-existing-vm-aft/682149#682149
+#https://superuser.com/questions/679457/vagrant-virtualbox-vm-is-initializing-new-instead-of-loading-the-existing-vm-aft/682149#682149
+# 1) start the VM manually. double click D:\virtual_box_vdis\dev.investi.com.au\dev.investi.com.au.vbox
+# 2) get id of image: VBoxManage list vms
+# 3) update id by editing file: D:\aaa_development\bitbucket\investi\scripts\vagrant\.vagrant\machines\default\virtualbox\id
+
 
 #mercari
 netsh http add urlacl url=https://+:443/ user=$env:UserDomain\$env:UserName
@@ -60,9 +71,15 @@ cp F:\Dropbox\docs\confCons.xml F:\software\verified
 
 npm i aurelia-cli@0.34 -g
 npm install -g @angular/cli
-
+npm i typescript -g
 
 #add SSL cert using D:\Program Files2\httpconfig\HttpConfig.exe
 
 #delete .vs folder if you get red underlines in visual studio
 https://stackoverflow.com/questions/21098333/visual-studio-compiles-fine-but-still-shows-red-lines
+
+#remove conemu global hotkey for backtick
+
+vs code: keyboard shortcuts 'expand selection' 'saveAll'
+
+https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sleep-when-traveling-in-bag

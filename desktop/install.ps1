@@ -4,6 +4,8 @@ Set-ExecutionPolicy RemoteSigned
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 [Environment]::SetEnvironmentVariable("MSSQL_CONN_STR", "server=192.168.73.10;User Id=sa;Password=P@ssword1", "User")
+[Environment]::SetEnvironmentVariable("RAVENDB4_URL", "https://raven1.wallaceturner.com:8080/", "User")
+[Environment]::SetEnvironmentVariable("RAVENDB_CERT_CN", "*.wallaceturner.com", "User")
 [Environment]::SetEnvironmentVariable("X_STREAM_CLIENT_SDK", "D:\aaa_development\x_stream_client_sdk", "User")
 [Environment]::SetEnvironmentVariable("TSMRMSGFILE", "D:\aaa_development\x_stream_client_sdk\bin\tsmr.msg", "User")
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\aaa_development\x_stream_client_sdk\bin", "Machine")
@@ -11,7 +13,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 choco feature enable -n allowGlobalConfirmation
 choco install notepadplusplus googlechrome -y
-choco install vscode msbuild.communitytasks skype git sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui
+choco install vscode msbuild.communitytasks skype git putty sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui
 choco install virtualbox vagrant -y
 choco install visualstudio2019community --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 
@@ -21,17 +23,24 @@ choco install visualstudio2019community --package-parameters "--allWorkloads --i
 choco install androidstudio
 choco install obs-studio -y
 choco install mongodb studio3t  
-choco install dotnetcore-sdk --version=2.2.0
 choco install sql-server-management-studio
 
 
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 
 certutil -f -importpfx -user F:\Dropbox\docs\certificates\investi.com.au\client.pfx
+certutil -f -importpfx F:\Dropbox\docs\certificates\wallaceturner.com\server.pfx
+certutil -f -importpfx -user F:\Dropbox\docs\certificates\wallaceturner.com\client.pfx
 
 #required for FexOnline sln
-F:\software\desktop\PC-Span-x64593.msi
-F:\software\desktop\SpanCom593-x64.msi
+choco install dotnetcore-sdk --version=2.2.0
+mkdir c:\temp
+c:\temp\PC-Span-x64593.msi /quiet /passive EULA=1
+F:\software\PC-Span-x64593.msi
+copy F:\software\SpanCom593-x64.msi c:\temp
+c:\temp\SpanCom593-x64.msi /quiet /passive EULA=1
+
+
 
 Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart

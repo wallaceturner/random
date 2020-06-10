@@ -3,17 +3,20 @@ Set-ExecutionPolicy RemoteSigned
 #install chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\aaa_development\x_stream_client_sdk\bin", "Machine")
 [Environment]::SetEnvironmentVariable("MSSQL_CONN_STR", "server=192.168.73.10;User Id=sa;Password=P@ssword1", "User")
 [Environment]::SetEnvironmentVariable("RAVENDB4_URL", "https://raven1.wallaceturner.com:8080/", "User")
 [Environment]::SetEnvironmentVariable("RAVENDB_CERT_CN", "*.wallaceturner.com", "User")
 [Environment]::SetEnvironmentVariable("X_STREAM_CLIENT_SDK", "D:\aaa_development\x_stream_client_sdk", "User")
 [Environment]::SetEnvironmentVariable("TSMRMSGFILE", "D:\aaa_development\x_stream_client_sdk\bin\tsmr.msg", "User")
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\aaa_development\x_stream_client_sdk\bin", "Machine")
+[Environment]::SetEnvironmentVariable("investi_server_location", "wal@investi.com.au", "User")
+[Environment]::SetEnvironmentVariable("investi_server_pass", "", "User")
+
 
 
 choco feature enable -n allowGlobalConfirmation
 choco install notepadplusplus googlechrome -y
-choco install vscode msbuild.communitytasks skype git putty sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui
+choco install vscode msbuild.communitytasks skype git putty sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui signal tixati vlc
 choco install virtualbox vagrant -y
 choco install visualstudio2019community --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 
@@ -24,10 +27,12 @@ choco install androidstudio
 choco install obs-studio -y
 choco install mongodb studio3t  
 choco install sql-server-management-studio
+choco install vnc-viewer
 
-
+#vscode extensions
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 
+#client/server certificates for ravendb
 certutil -f -importpfx -user F:\Dropbox\docs\certificates\investi.com.au\client.pfx
 certutil -f -importpfx F:\Dropbox\docs\certificates\wallaceturner.com\server.pfx
 certutil -f -importpfx -user F:\Dropbox\docs\certificates\wallaceturner.com\client.pfx
@@ -78,9 +83,13 @@ Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.10`t fexglobfow01.fg
 cp F:\Dropbox\docs\confCons.xml C:\Users\vagrant\AppData\Roaming\mRemoteNG
 cp F:\Dropbox\docs\confCons.xml F:\software\verified
 
+#investi requires gulp
+npm i gulp -g
 npm i aurelia-cli@0.34 -g
 npm install -g @angular/cli
 npm i typescript -g
+npm i firebase-tools -g
+
 
 #add SSL cert using D:\Program Files2\httpconfig\HttpConfig.exe
 
@@ -92,3 +101,8 @@ https://stackoverflow.com/questions/21098333/visual-studio-compiles-fine-but-sti
 vs code: keyboard shortcuts 'expand selection' 'saveAll'
 
 https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sleep-when-traveling-in-bag
+
+cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\docs\vscode\settings.json
+cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropbox\docs\vscode\keybindings.json
+
+

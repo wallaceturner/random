@@ -104,5 +104,6 @@ https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sle
 
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\docs\vscode\settings.json
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropbox\docs\vscode\keybindings.json
+cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
 
 

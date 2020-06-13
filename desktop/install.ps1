@@ -107,3 +107,4 @@ cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropb
 cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
 
 
+#https://community.atlassian.com/t5/Sourcetree-questions/Pageant-doesn-t-save-keys/qaq-p/142855

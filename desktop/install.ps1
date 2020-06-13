@@ -108,3 +108,7 @@ cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
 
 
 #https://community.atlassian.com/t5/Sourcetree-questions/Pageant-doesn-t-save-keys/qaq-p/142855
+
+docker pull mcr.microsoft.com/mssql/server:2017-latest
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssword1" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest -v sql1data:/var/opt/mssql 
+

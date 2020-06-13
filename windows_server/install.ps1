@@ -16,12 +16,11 @@ param (
 if ($step -eq 1){
 	 Write-Host("Step 1");
 	bcdedit /set hypervisorlaunchtype off
-	Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
+	
 	Set-ExecutionPolicy RemoteSigned -f
-
+	Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	choco feature enable -n allowGlobalConfirmation
-	choco install tortoisehg vcredist140 googlechrome mremoteng notepadplusplus autologon 7zip
+	choco install vcredist140 googlechrome mremoteng notepadplusplus autologon 7zip
 
 	autologon $env:UserName $env:UserDomain vagrant
 	dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart

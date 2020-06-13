@@ -106,4 +106,5 @@ cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropbox\docs\vscode\keybindings.json
 cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
 
-
+docker pull mcr.microsoft.com/mssql/server:2017-latest
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssword1" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest -v sql1data:/var/opt/mssql 

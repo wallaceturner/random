@@ -119,6 +119,25 @@ cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
 
 #https://community.atlassian.com/t5/Sourcetree-questions/Pageant-doesn-t-save-keys/qaq-p/142855
 
-docker pull mcr.microsoft.com/mssql/server:2017-latest
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssword1" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest -v sql1data:/var/opt/mssql 
+
+#docker
+#list all containers
+docker ps -a
+#install container
+docker pull mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=P@ssword1" --name "sql1" -p 1433:1433 -v sql1data:/var/opt/mssql -d mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+
+#restore backup
+docker exec -it sql1 mkdir /var/opt/mssql/backup
+cp D:\Restore\MercariDirectNightly.bak  sql1:/var/opt/mssql/backup
+docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd `
+    -S localhost -U SA -P "P@ssword1" `
+    -Q "RESTORE DATABASE MercariDirectNightly FROM DISK = '/var/opt/mssql/backup/MercariDirectNightly.bak' WITH MOVE 'MercariDirectNightly' TO '/var/opt/mssql/data/MercariDirectNightly.mdf', MOVE 'MercariDirectNightly_log' TO '/var/opt/mssql/data/MercariDirectNightly.ldf'"                                                     
+
+
+
+
+
+
+
 

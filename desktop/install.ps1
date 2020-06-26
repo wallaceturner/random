@@ -64,6 +64,16 @@ cat .\.ssh\id_rsa.pub
 #save this file as .\.ssh\id_rsa.ppk
 #start Pageant (from notification menu area) and select 'Add Key' and select the ppk from previous step
 
+#clone personal or work repos
+git clone wallace_turner@bitbucket.org:wallace_turner/investi.git
+git clone w_turner@bitbucket.org:fexglobal/huntsman.git
+git clone w_turner@bitbucket.org:fexglobal/webtrader.git
+git clone w_turner@bitbucket.org:fexglobal/mercaridirect.git
+	
+#change git origin if does not include username
+git remote set-url origin w_turner@bitbucket.org:fexglobal/mercaridirect.git
+
+
 #vagrant
 #if after calling 'vagrant up' it launches a new VM instead of the existing VM you need to tell vagrant the id of the VM. 
 #https://superuser.com/questions/679457/vagrant-virtualbox-vm-is-initializing-new-instead-of-loading-the-existing-vm-aft/682149#682149

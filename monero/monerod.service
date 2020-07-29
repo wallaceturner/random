@@ -3,16 +3,15 @@ Description=Monero Full Node
 After=network.target
 
 [Service]
-User=wal
-Group=wal
+User=troy
+Group=troy
 WorkingDirectory=~
 RuntimeDirectory=monero
 
 # Clearnet config
 #
 Type=forking
-PIDFile=/run/monero/monerod.pid
-ExecStart=/home/wal/monero-x86_64-linux-gnu-v0.15.0.1/monerod --rpc-bind-ip=0.0.0.0 --restricted-rpc --confirm-external-bind --detach --pidfile /run/monero/monerod.pid
+ExecStart=/home/troy/monero-x86_64-linux-gnu-v0.15.0.1/monerod --rpc-bind-ip=0.0.0.0 --restricted-rpc --confirm-external-bind --data-dir /opt/bitmonero --detach
 
 Restart=always
 

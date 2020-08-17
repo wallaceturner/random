@@ -117,7 +117,7 @@ https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sle
 #generate ssh private keys and add public key to remote server
 #ssh-keygen -t rsa -b 4096 -C "wallaceturner@gmail.com"
 #ssh-keygen -t rsa -b 4096 -C "w.turner@fex.com.au"
-#cat ~/.ssh/id_rsa.pub | ssh wal@192.168.73.10 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
+#cat ~/.ssh/id_rsa.pub | ssh wal@192.168.83.10 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
 #cat ~/.ssh/id_rsa_wallaceturner.pub | ssh wal@wallaceturner.com "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
 
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\docs\vscode\settings.json

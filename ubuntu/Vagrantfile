@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+unless Vagrant.has_plugin?("vagrant-disksize")
+  raise 'vagrant-disksize is not installed! run \'vagrant plugin install vagrant-disksize\''
+end
+
+Vagrant.configure("2") do |config|
+  
+  # Box Settings  
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network "private_network", ip: "192.168.83.10"
+  config.vm.network "forwarded_port", guest: 1433, host: 1433
+  config.vm.network "forwarded_port", guest: 3306, host: 3306
+  config.disksize.size = '200GB'
+  #echo $UID
+  config.vm.synced_folder "D:/aaa_development/GitHub/random/ubuntu/shared/", "/home/wal/shared", owner: 1002, group: 1002
+  #config.vm.synced_folder ".", "/vagrant",mount_options: ["dmode=775,fmode=664"]
+  config.vm.hostname = 'ubuntu.docker';
+
+  cache_dir = local_cache(config.vm.box)
+  config.vm.synced_folder cache_dir, "/var/cache/apt/archives/"
+  
+  # Provider Settings
+  config.vm.provider "virtualbox" do |vb|    
+	vb.memory = 2048
+	vb.name = "ubuntu.docker"
+    vb.cpus = 1
+	vb.customize ["storageattach", :id,"--storagectl", "IDE","--port", "0", "--device", "1","--type", "dvddrive","--medium", "emptydrive"]   
+  end
+
+
+  
+  #config.vm.provision "file", source: "./install_files", destination: "/tmp/install_files"  
+  config.vm.provision "shell", path: "install.sh"
+end
+
+def local_cache(box_name)		
+  cache_dir = File.join(File.expand_path(ENV["USERPROFILE"] + '\.vagrant.d'),'cache','apt',box_name)
+  partial_dir = File.join(cache_dir, 'partial')
+  FileUtils.mkdir_p(partial_dir) unless File.exists? partial_dir
+  cache_dir
+end

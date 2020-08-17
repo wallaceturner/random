@@ -7,4 +7,3 @@ apt-get install docker-ce docker-ce-cli containerd.io -y
 usermod -aG docker $USER
 
 #docker run hello-world
-#https://gist.github.com/estorgio/0c76e29c0439e683caca694f338d4003

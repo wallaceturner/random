@@ -19,7 +19,7 @@ choco install notepadplusplus googlechrome -y
 choco install vscode msbuild.communitytasks skype git putty sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui signal tixati vlc processhacker screentogif
 choco install virtualbox vagrant -y
 choco install visualstudio2019community --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
-
+choco install adobereader treesizefree
 #Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/347.88/347.88-desktop-win8-win7-winvista-64bit-international-whql.exe -OutFile ./347.88-desktop-win8-win7-winvista-64bit-international-whql.exe
 
 #optional
@@ -113,6 +113,12 @@ https://stackoverflow.com/questions/21098333/visual-studio-compiles-fine-but-sti
 vs code: keyboard shortcuts 'expand selection' 'saveAll'
 
 https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sleep-when-traveling-in-bag
+
+#generate ssh private keys and add public key to remote server
+#ssh-keygen -t rsa -b 4096 -C "wallaceturner@gmail.com"
+#ssh-keygen -t rsa -b 4096 -C "w.turner@fex.com.au"
+#cat ~/.ssh/id_rsa.pub | ssh wal@192.168.73.10 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
+#cat ~/.ssh/id_rsa_wallaceturner.pub | ssh wal@wallaceturner.com "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
 
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\docs\vscode\settings.json
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropbox\docs\vscode\keybindings.json

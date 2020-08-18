@@ -24,5 +24,8 @@ ufw allow 22
 ufw allow 1433/tcp
 ufw --force enable
 
+chmod +x /tmp/install_files/docker_install.sh
+/tmp/install_files/docker_install.sh
+
 #enable shared folders
 #https://gist.github.com/estorgio/0c76e29c0439e683caca694f338d4003

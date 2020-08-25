@@ -26,13 +26,13 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|    
 	vb.memory = 2048
 	vb.name = "ubuntu.docker"
-    vb.cpus = 1
+    vb.cpus = 2
 	vb.customize ["storageattach", :id,"--storagectl", "IDE","--port", "0", "--device", "1","--type", "dvddrive","--medium", "emptydrive"]   
   end
 
 
   
-  config.vm.provision "file", source: "./install_files", destination: "/tmp/install_files"  
+  #config.vm.provision "file", source: "./install_files", destination: "/tmp/install_files"  
   config.vm.provision "shell", path: "install.sh"
 end
 
@@ -42,3 +42,10 @@ def local_cache(box_name)
   FileUtils.mkdir_p(partial_dir) unless File.exists? partial_dir
   cache_dir
 end
+
+
+#shrink the VM which increased due to copying files. ref https://superuser.com/questions/529149/how-to-compact-virtualboxs-vdi-file-size
+#on linux guest run
+#   dd if=/dev/zero of=/var/tmp/bigemptyfile bs=4096k ; rm /var/tmp/bigemptyfile
+# on windows host run
+#   ."C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifymedium --compact D:\virtual_box_vdis\ubuntu.docker\ubuntu-bionic-18.04-cloudimg.vdi

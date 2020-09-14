@@ -22,7 +22,9 @@ if ($step -eq 1){
 	choco feature enable -n allowGlobalConfirmation
 	choco install vcredist140 googlechrome mremoteng notepadplusplus autologon 7zip
 
-	autologon $env:UserName $env:UserDomain vagrant
+	#setup autologon
+	autologon $env:UserName $env:UserDomain <your password>
+	#//install below to avoid pulse 'JNPRTtlsProvider.dll failed to register' error
 	dism /online /Enable-Feature /FeatureName:WirelessNetworking /NoRestart
 	DISM /online /Enable-Feature /FeatureName:TelnetClient /NoRestart
 	DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart	

@@ -25,7 +25,7 @@ choco install adobereader treesizefree
 #optional
 choco install androidstudio
 choco install obs-studio -y
-choco install mongodb studio3t  
+choco install mongodb  mongodb-database-tools studio3t  
 choco install sql-server-management-studio
 choco install vnc-viewer
 
@@ -80,6 +80,7 @@ git remote set-url --push origin w_turner@bitbucket.org:fexglobal/mercaridirect.
 #if after calling 'vagrant up' it launches a new VM instead of the existing VM you need to tell vagrant the id of the VM. 
 #https://superuser.com/questions/679457/vagrant-virtualbox-vm-is-initializing-new-instead-of-loading-the-existing-vm-aft/682149#682149
 # 1) start the VM manually. double click D:\virtual_box_vdis\dev.investi.com.au\dev.investi.com.au.vbox
+#if you get 'failed to create the raw output file' delete the serial port (or change path to match existing file)
 # 2) get id of image: VBoxManage list vms
 # 3) update id by editing file: D:\aaa_development\bitbucket\investi\scripts\vagrant\.vagrant\machines\default\virtualbox\id
 

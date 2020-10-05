@@ -31,6 +31,7 @@ choco install vnc-viewer
 
 #vscode extensions
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack
+code --install-extension vscode-styled-components
 
 #client/server certificates for ravendb
 certutil -f -importpfx -user F:\Dropbox\docs\certificates\investi.com.au\client.pfx
@@ -93,6 +94,7 @@ New-NetFirewallRule -DisplayName '59166' -Profile 'Any' -Direction Inbound -Acti
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.20`t fexglobitefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.22`t fexglobetefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.10`t fexglobfow01.fglau.com"
+Add-Content C:\Windows\System32\drivers\etc\hosts "1192.168.83.10`t ubuntu"
 cp F:\Dropbox\docs\confCons.xml C:\Users\vagrant\AppData\Roaming\mRemoteNG
 cp F:\Dropbox\docs\confCons.xml F:\software\verified
 

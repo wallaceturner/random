@@ -1,0 +1,37 @@
+#poker configuration
+vi /home/troy/poker/poker.engine/.env
+
+#nginx
+in both change 'server_name' field to reflect the name of the site. e.g. replace 'server_name admin.poker.site' with your site
+
+#Verify the syntax of your configuration edits with:
+sudo nginx -t
+
+#then restart
+sudo systemctl restart nginx
+
+#add admin entries to /etc/nginx/.htpasswd using this tool: https://www.web2generators.com/apache-tools/htpasswd-generator
+
+
+sudo certbot --register-unsafely-without-email --nginx -d poker.site
+sudo certbot --register-unsafely-without-email --nginx -d admin.poker.site
+
+#optional. remove sudo prompt: 
+sudo visudo
+troy     ALL=(ALL) NOPASSWD:ALL
+
+#ensure app is set to restart on reboot:
+sudo crontab -e
+@reboot /home/troy/run.sh &
+
+
+#setup as dev env
+git config --global user.email "Bob Smith"
+git config --global user.name "bob@smith.com"
+git config --global credential.helper store
+git clone https://<repo here>/crypto-poker.git
+
+cat ~/.ssh/id_rsa.pub | ssh troy@192.168.23.10 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
+
+sudo npm i typescript -g
+sudo npm i aurelia-cli@0.34 -g

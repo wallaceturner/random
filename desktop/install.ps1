@@ -25,7 +25,7 @@ choco install adobereader treesizefree
 #optional
 choco install androidstudio
 choco install obs-studio -y
-choco install mongodb  mongodb-database-tools studio3t  
+choco install mongodb  mongodb-database-tools mongodb-compass  
 choco install sql-server-management-studio
 choco install vnc-viewer
 
@@ -120,18 +120,18 @@ https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sle
 #generate ssh private keys and add public key to remote server
 #ssh-keygen -t rsa -b 4096 -C "wallaceturner@gmail.com"
 #ssh-keygen -t rsa -b 4096 -C "w.turner@fex.com.au"
-#cat ~/.ssh/id_rsa.pub | ssh wal@192.168.83.10 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
+#cat ~/.ssh/id_rsa.pub | ssh wal@dev.investi.com.au "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
 #cat ~/.ssh/id_rsa_wallaceturner.pub | ssh wal@wallaceturner.com "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
 
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\docs\vscode\settings.json
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropbox\docs\vscode\keybindings.json
 cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
 
-
 #https://community.atlassian.com/t5/Sourcetree-questions/Pageant-doesn-t-save-keys/qaq-p/142855
 
-docker pull mcr.microsoft.com/mssql/server:2017-latest
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssword1" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest -v sql1data:/var/opt/mssql 
-#run existing
-docker start sql1
 
+
+#create startup file to start VMs
+C:\Users\vooos\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\start_vm.bat
+cd /d D:\aaa_development\GitHub\random\ubuntu
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm ubuntu.docker --type headless

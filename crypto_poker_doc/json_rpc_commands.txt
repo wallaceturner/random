@@ -1,0 +1,21 @@
+#dash
+curl -u troy:f00bar1 -H "Content-Type: application/json" -d '{"method": "getblockchaininfo" }' http://127.0.0.1:9998/
+curl -u troy:f00bar1 -H "Content-Type: application/json" -d '{"method": "getbalance" }' http://127.0.0.1:9998/
+curl -u troy:f00bar1 --data-binary '{"method": "getblockcount" }' -H 'content-type: application/json;' http://127.0.0.1:9998/
+curl -u troy:f00bar1 --data-binary '{ "method": "gettransaction", "params": ["d544ca07abed9571bf335b33598830302921e90d3385ce9ccd6fce3306148ad6"] }' -H 'content-type: application/json;' http://127.0.0.1:9998/
+curl -u troy:f00bar1 -H "Content-Type: application/json" -d '{"method": "dumpprivkey","params": [ "XbsstQWzgrS4qQp81ojm7bCs9oaESoYrM6 "] }' http://127.0.0.1:9998/
+curl -u troy:f00bar1 -H "Content-Type: application/json" -d '{"method": "walletpassphrase","params": [ "foo", 10 ] }' http://127.0.0.1:9998/
+curl -u troy:f00bar1 -H "Content-Type: application/json" -d '{ "method": "listreceivedbyaddress", "params": [0, false, true, true] }' http://127.0.0.1:9998/
+
+#eth
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":83}' 127.0.0.1:8545
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0xbde63ea6ce55a658ab141515da161dde09cbf2f5af2024838af78dbf42c6d059"],"id":1}' 127.0.0.1:8545
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x9b33f8f2b7c8067c09f3ae5ee38842d3b4674ef74b4af41d7b0545b312979d2f"],"id":1}' 127.0.0.1:8545
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x4AF58F", true],"id":1}' 127.0.0.1:8545
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}' 127.0.0.1:8545
+
+#btc
+curl -u troy:f00bar1 -H "Content-Type: application/json" -d '{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}' http://192.168.1.10:18332/
+
+#xmr
+curl -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":"0","method":"get_block_count"}' http://192.168.1.61:18081/json_rpc

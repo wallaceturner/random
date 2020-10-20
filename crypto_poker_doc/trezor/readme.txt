@@ -1,0 +1,1 @@
+trezor_export_eth_xpub

@@ -1,0 +1,254 @@
+read in commands from a file
+mongo < yourFile.js
+https://stackoverflow.com/questions/4837673/how-to-execute-mongo-commands-through-shell-scripts
+
+make sure you add 'use PokerGameServer' as the first line in the file
+
+
+
+
+
+--list messages after certain time belonging to userdb.getCollection('messages').find( { $and: [ { _id: { $gt: ObjectId("5bdee63bbae4423036492ef5") } }, { guid:"6bd132ff5dcb7addce9687bd4441567fdbfa7ec6"} ] } ).sort({_id:1})
+.forEach(m=>{
+    print(m._id.getTimestamp().toLocaleString() + ' ' + JSON.stringify(m.data))    
+})
+
+--update all passwords to 1234
+db.getCollection('users').updateMany({  },{ $set: {  "password": "$2a$05$rxF293UGye03QfP3hKPdWOVWRpdicp17he4xasql/zUaBRPpq06Bi", } });
+
+--sent mailchimp back to not sent
+db.getCollection('tournmanets').updateMany({ sentMailchimp:true },{ $set: {  "sentMailchimp": false } });
+
+--get history of what user did:
+db.getCollection('messages').find( { "tableId": "5bbdec2080ff9913293a81ee",guid:"403d77aca01d33dbeac69cd1c8e0bd15c86d3a04" } ).sort({_id:-1})
+.forEach(function(m){
+    print(m._id.getTimestamp().toLocaleString() + JSON.stringify(m.data))
+});
+
+--delete/remove field from document: https://stackoverflow.com/questions/6851933/how-to-remove-a-field-completely-from-a-mongodb-document
+db.getCollection('users').update({}, {$unset: {accounts:1}} , {multi: true});
+
+var startTime = new Date();
+startTime.setMinutes(startTime.getMinutes() - 1);
+db.getCollection('tournmanets').updateMany({  },{ $set: {  "status":NumberInt(0), "startTime":startTime.toISOString() } });
+db.getCollection('tableState').deleteMany({})
+db.getCollection('tournamentResults').remove({})
+db.getCollection('changeSeatHistory').remove({})
+
+
+db.getCollection('users').find({ "accounts.currency":"DASH", "accounts.balance":{ $gt: 0 }})
+
+and statement:
+db.getCollection('addressInfo').find( { $and: [ { _id: { $gt: objectIdWithTimestamp('2017/08/24') } }, { processed: true} ] } ).sort({_id:-1});
+
+get timestamp from id
+db.getCollection('users').findOne({guid: "a2bf1f807af1e272790d414f12259ad721c953ea"})._id.getTimestamp()
+
+update collection:
+db.getCollection('tableConfig').updateMany({  },{ $set: {  "maxPlayers":9, } });
+db.getCollection('tableConfig').updateMany({  },{ $set: {  "timeToActSec": 60, } });
+db.getCollection('users').updateMany({  },{ $set: {  "updateIndex": 0, } });
+
+find by ObjectId:
+db.getCollection('tableConfig').find({_id:ObjectId("59b6b498e832513beeda1cbf")})
+
+containing case insensitive
+db.getCollection('games').find({"players.screenName":/.*chadd.*/i})
+
+backup db
+mongodump -d PokerGameServer -o ~/database_backup
+
+
+--update currency to lower case
+db.getCollection('users').find().forEach(
+    function (user) {
+        user.accounts.forEach(function (acc){
+            print('updating ' + user.screenName + ' acc: ' + acc.currency)
+            acc.currency = acc.currency.toLowerCase();
+        })
+         db.getCollection('users').save(user);
+    }
+);
+
+--update many
+db.getCollection('addressInfo').updateMany({processed: false, private : {$ne : null}}, { $set: { processed: true }})
+
+--add field to document that does not exist
+db.getCollection('addressInfo').updateMany({ "incomingTxHashes" : { "$exists" : false } }, { $set: { incomingTxHashes: [] }})
+
+
+fix recon:
+db.getCollection('games').find(
+      { "players.guid": "ac0b75baed5e2f3ecf8f12d17f63caf40c15b04b" }).forEach( 
+      function (game) {
+        let shouldSave = false;
+          game.auditEvents.forEach(function (audit){
+            if(audit.userGuid === "8546b96090b5417491dac5575efb5f90663940bb"){                
+                audit.userGuid = "ac0b75baed5e2f3ecf8f12d17f63caf40c15b04b";
+                shouldSave=true;
+            }
+            
+        });
+        game.potResults.forEach(function (potResult){
+            
+            potResult.allocations.forEach(function(allocation){
+                
+                if(allocation.player.guid === "8546b96090b5417491dac5575efb5f90663940bb"){                
+                //print('allocation.player.guid ' + allocation.player.guid)   
+                allocation.player.guid = "ac0b75baed5e2f3ecf8f12d17f63caf40c15b04b";
+                shouldSave=true;
+            }
+            })
+            
+        });
+        if(shouldSave){
+            print('updating ' + game._id)                
+            db.getCollection('games').save(game);
+        }
+            
+    }
+);
+
+--update fields back to Int32
+db.getCollection('users').find().forEach(
+function(user){
+    user.accounts.forEach(
+    function (account){           
+        account.balance = NumberInt(account.balance.toFixed(0))
+        print(user.screenName + ' ' + account.currency + ' ' + account.balance)
+        
+        })
+        db.getCollection('users').save(user);
+})
+
+db.getCollection('payments').find({}).forEach(
+function(payment){
+    payment.amount = NumberInt(payment.amount.toFixed(0));
+        print(payment.amount);
+    db.getCollection('payments').save(payment);
+})
+
+--update fields back to lowercase
+db.getCollection('tableConfig').find().forEach(
+function(tableConfig){
+    tableConfig.currency = tableConfig.currency.toLowerCase();
+    db.getCollection('tableConfig').save(tableConfig);
+        
+})
+db.getCollection('tableBalance').find().forEach(
+function(tableBalance){
+    tableBalance.currency = tableBalance.currency.toLowerCase();
+    db.getCollection('tableBalance').save(tableBalance);
+        
+})
+db.getCollection('exchangeRates').find().forEach(
+function(exch){
+    exch.base = exch.base.toLowerCase();
+    exch.target = exch.target.toLowerCase();
+    db.getCollection('exchangeRates').save(exch);
+        
+})
+
+db.getCollection('addressInfo').find().forEach(
+function(address){
+    address.currency = address.currency.toLowerCase();    
+    db.getCollection('addressInfo').save(address);
+        
+})
+
+--delete eth payments and games
+db.getCollection('payments').deleteMany({currency:"eth"});
+db.getCollection('games').deleteMany({currency:'eth'})
+
+--delete eth accounts
+db.getCollection('users').find().forEach(
+function(user){
+    user.accounts.forEach(
+    function (account){           
+        
+        if(account.currency=='eth')
+            user.accounts.splice(user.accounts.indexOf(account), 1);
+            db.getCollection('users').save(user);
+            print ('modified ' + user.screenName);
+            return false;
+        })
+        
+})
+
+
+
+
+--add tournament registrations
+var count = 0;
+db.getCollection('users').find().forEach(
+    function (user) {
+        if(count >= 20)
+            return;
+        var registration = { "tournamentId" : "5b6bf431a2bbd0ee5151a466", "userGuid" : user.guid};
+        print(registration)
+        count++;
+                
+         db.getCollection('tournamentRegistration').save(registration);
+    }
+    
+);
+
+--query tournament registrations
+db.getCollection('tournamentRegistration').find().forEach(
+    function (registraion) {
+        var user = db.getCollection('users').findOne({guid:registraion.userGuid})
+        print(user.screenName)        
+    }    
+);
+
+--find duplicates:
+db.users.aggregate(
+    {"$group" : { "_id": "$screenName", "count": { "$sum": 1 } } },
+    {"$match": {"_id" :{ "$ne" : null } , "count" : {"$gt": 1} } }, 
+    {"$project": {"screenName" : "$_id", "_id" : 0} }
+)
+
+--add tournamentId field to games document
+db.getCollection('games').find({}).sort({_id:-1}).forEach(g=>{
+    if(g.currency == 'tournament'){
+        let tableState = db.tableState.findOne({_id:ObjectId(g.tableId)})
+        
+        if(tableState.tournamentId){
+            g.tournamentId = tableState.tournamentId
+            db.games.save(g)
+        }else{
+            print(`tournamentId not defined!`)
+        }
+    }
+})
+
+
+--update payments
+db.getCollection('tournamentRegistration').find({tournamentId:"5c447844c746e7788fbd5dd3"}).forEach(r=>{
+    let payments = db.payments.find({screenName:r.screenName, comment:'Buy in - Sunday Tournament'}).sort({_id:-1}).toArray()
+    let payment = payments[0];
+    print(payment._id.getTimestamp().toLocaleString());
+    payment.tournamentId = "5c447844c746e7788fbd5dd3"
+    payment.tournamentName = "Sunday Tournament"
+    db.payments.save(payment)
+})
+
+
+
+--delete users without an email
+db.users.find({}).sort({
+    screenName: 1
+}).forEach(u => {
+
+    if (!u.email) {
+        let count = db.payments.find({
+            guid: u.guid
+        }).count()
+        if (count == 0) {
+            print('removing ' + u.screenName)
+            db.users.remove(u)
+			db.addressInfo.remove({userGuid:u.guid})
+        }
+
+    }
+})

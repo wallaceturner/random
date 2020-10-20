@@ -1,0 +1,139 @@
+dash master acct: XbsstQWzgrS4qQp81ojm7bCs9oaESoYrM6
+eth master acct: 0xB5B5926f1ce2f898a0956ED104a8431BF1fAd835
+
+
+when someone rebuys sometimes they are seated at an empty table instead of a table with players
+
+lock down firewall
+add google analytics
+use infura to get gas estimate for eth withdrawls. {"jsonrpc":"2.0","method":"eth_estimateGas","params": [{"from": "0xb5b5926f1ce2f898a0956ed104a8431bf1fad835","to": "0x6D63D6D32cd5435611a7a134ce9848DC69261016","value": "0x9184e72a"}],"id":1}
+use Min of 60,000 and this result
+if you are playing at a money table do not auto join the tournament.
+
+min raise should be based on the previous min raise, not simply the call amount + BB. see https://poker.stackexchange.com/a/6526/5298
+
+arlett screenshot bug. saw funpolice twice
+
+
+remove duplicate session when user logs in.
+4 color deck
+
+add telegram, mailchimp, social channels on the site too?
+
+
+
+todd bug: he had late rego but kept going to the 'wrong' table; most likely the first table he saw when he logged on
+auto rebuy on cash tables
+rebuy for freeroll.
+buy in amount.
+tournament player count not updating correctly under 'show tables'
+
+ player that is last at table (that does not sit out) and then disconnects is not removed from the table.
+the recreate is disconnect b4 the hand finishes. e.g. player1 folds then disconnects. (assume other player ticks 'sit out')
+
+'waiting on other tables' after showdown and in between streets
+moved table notification.
+celeste ipad, couldnt see 'sit out next hand' checkbox
+ipad arlett. slider not working
+add donations to prizepool
+
+
+mongodb warning: WARNING: Access control is not enabled for the database.  Read and write access to data and configuration is unrestricted.
+
+
+EthBlockService
+UserReconcilliation
+
+
+ensure error is fed back thru if incoming payment sweep falls over. can be simulated by removing the master account.
+add deposit/withdrawl amounts
+consider reducing gas_price and sweep fee by lowering gas_price
+transfer funds only works for DASH
+update exchange rates on table
+implement https://www.npmjs.com/package/alea
+tsconfig.json - change "noImplicitAny": true,, to strict: true
+
+amount textbox not big enough for free table on ios
+stop double click from sending signal thru
+bug: saw amounts in raw amount (not converted to USD)
+
+Uncaught TypeError: Cannot read property 'timeToActSec' of undefined     at t.getTimeToActSec (app-bundle-d561949d83.js:2)     at app-bundle-d561949d83.js:2
+>remove tables menu item
+add username/password
+with a lot of chat members the global chat is only half the height
+can't leave table if folded. need to wait for hand to finish
+stop ppl moving table
+
+
+
+
+auto update leaderboard when player leaves table.
+
+
+replace blockcypher. steps
+1) setup dash.conf add walletnotify=wget http://localhost:8111/dashd-tx-callback?txid=%s
+{"method": "getnewaddress", "params": ["318dd7497229f5e2dee99bdaed24f549c0e128d2"] } 
+2) when address is generated add to dash core wallet via JSON RPC call: {"method": "importprivkey", "params": [ "XCoAnxYpAv4U3W9MV7QLKfaQQFNgP9TP1kyACuGgNkRNkdyvywPx", "th", false] }
+3) when walletnotify is triggered issue JSON RPC call: {"method": "gettransaction", "params": ["63ed46282e7233321e417005ee765a6a7d541a78ef955748f0af1460d13a64d1"] } 
+4) send payments via {"method": "sendtoaddress", "params": [ "XcJGgH3QCzmrqViTKVhdsmftSoAB5kHM2c", 0.02, "coretojaxx", "", true] }
+
+echo %s > D:\temp\output.txt
+
+if a player is disconnected and the hand starts to deal then when they come back its not obvious they are sitting out. they have to toggle 'sit out' to restart the game
+if reconnecting do not switch to table with players if its less than x seconds since last connect
+find what happened to XoBCe9UmVpjp52gTaAHBxG8jYrt3qYxQ8w
+remove hook after a certain time, e.g. 2 hours
+check error handling in queue
+table.toGameEvent maps each pot but client side does not handle. needs to show multi pots or just the sum
+show pot amount in crypto currency
+prevent cashout when balance equal or less than the tx fee
+auto refund after 24hrs
+stop multiple login from same ip address
+ensure bet sizes are equal or greater than the min raise
+dont play a sound when its your message
+player action should say 'bet' instead of raise when first player bets post flop
+delete old/empty addresses from the blockcypher wallet
+make app auto reload the page when a new version is detected via sockets
+
+
+
+
+
+
+
+
+DONE:
+bug: ipad could not join table
+add exchange rate to game save
+disallow user with same screen name.
+save each action
+sit out next hand/leave table
+remove players disconnected longer than x
+save less verbose game data
+update global users when screen name changes
+maybe: todd joined pre flop and it was stuck on him even tho he should not have been playing hand. check calls to this.players should be this.currentplayers
+got same hole cards when changing table then changing back to 'active' table. recreate: leave table after you fold. wait till hand deals then rejoin table.
+showing multi pot winners on status label
+playing sounds on bet/fold 
+fix scroll bug
+all in didnt work. got stuck and betting controls showed when they should not have. then server error
+raise info label not updated when you type in the amount
+save player balances at showdown/game save
+automatically sit out player when balance < big blind
+reconnect to table you were playing on
+handleAction(request: JoinTableRequest) - the return value is not sent to client (if there is an error)
+ask blockcypher about size of wallets
+aurelia: unsubscribe from EventAggregator subscriptions. see cash-out.ts for example
+if you cash out and there isnt a hand being played then stand the user up automatically
+add 'all in' label when player is all in.
+ability to set screen name
+append winning hand to chat: Dealer: player 1 wins with 2 pair
+sit out next hand becomes unchecked when you fold. move this setting away from the seat object.
+stop user from playing at multiple tables.
+after user unchecks 'sit out next hand' check if hand should start
+if u fund then you cannot play on free tables
+global chat expands too big
+make max players work
+timer restarts incorrectly on reload
+if you are playing and you click on faq then back to tables you cannot get back to your hand.
+validateJoinTable needs to reject balance less than big blind.

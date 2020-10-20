@@ -1,0 +1,53 @@
+#dashcore manual config
+edit ~/.dashcore/dash.conf and replace mnemonic with one generated offline (and printed)
+start dash-qt
+./dash-cli encryptwallet "use POKER_UNLOCK_WALLET (generated below)"
+#!!delete mnemonic (dashd will stop after call to encryptwallet)
+ 
+./dash-cli walletpassphrase "fred" 60 false
+./dash-cli dumphdinfo
+./dash-cli listreceivedbyaddress 0 true true false
+
+#listreceivedbyaddress ( minconf addlocked include_empty include_watchonly)
+
+#restore db
+mongorestore -d PokerPaymentServer ./20180911
+
+#setup .env file
+copy payments.env to .env
+chmod 600 .env
+use hexdump to set POKER_K1,POKER_HMAC_KEY and POKER_UNLOCK_WALLET (may take some time as truly random data must be available)
+hexdump -n 32 -e '8/4 "%08X" 1 "\n"' /dev/random
+
+#install vpn - ref: https://support.nordvpn.com/Connectivity/Linux/1325531132/Installing-and-using-NordVPN-on-Debian-Ubuntu-and-Linux-Mint.htm
+sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+sudo dpkg -i ./nordvpn-release_1.0.0_all.deb
+sudo apt update 
+sudo apt install nordvpn -y
+nordvpn login
+nordvpn c
+curl 'https://api.ipify.org?format=json'
+
+generating btc and eth master accounts:
+enter dash Mnemonic into ian bip39-standalone.html
+switch to BIP32 tab
+use default of m/0/0
+cd into the same folder as the .env folder (~/poker/poker.payments)
+encrypt the private key by running (note that BTC uses a WIF and ETH uses a private key)
+cd to /poker/poker.payments (same folder as .env file)
+node ./build/poker.payments/src/EncryptCommandLine.js <private key or WIF>
+copy the public key and the private encrypted key into the masterAccount field of the currencyConfig document
+
+//if using keys from iancoleman (not trezor)
+//get the xpub from iancoleman page 'BIP32 Extended Public Key' field. (switch to BIP32 tab)
+//Ensure 'BIP32 Derivation Path' is equal to 'm' (not m/0) as the account will be derived below (due to aligning with trezor)
+//if using xpub from trezor needs to be converted using https://repl.it/@moocowmoo/bip32-convert-drkp-to-xpub
+
+DASH xpub:
+https://repl.it/repls/StarkIdioticSoftwareengineer to convert dash extended public key from drkp to xpub
+
+ETH xpub:
+see doc\trezor\index.html for extracting the xpub from trezor
+
+BTC xpub:
+can be copied straight from trezor

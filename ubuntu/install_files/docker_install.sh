@@ -7,3 +7,6 @@ apt-get install docker-ce docker-ce-cli containerd.io -y
 usermod -aG docker $USER
 
 #docker run hello-world
+
+#remove a container
+#docker rm 2ab19c3aa520 --force

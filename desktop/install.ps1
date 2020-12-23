@@ -4,11 +4,13 @@ Set-ExecutionPolicy RemoteSigned
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\aaa_development\x_stream_client_sdk\bin", "Machine")
+[Environment]::SetEnvironmentVariable("X_STREAM_CLIENT_SDK", "D:\aaa_development\x_stream_client_sdk", "User")
+[Environment]::SetEnvironmentVariable("TSMRMSGFILE", "D:\aaa_development\x_stream_client_sdk\bin\tsmr.msg", "User")
+
 [Environment]::SetEnvironmentVariable("MSSQL_CONN_STR", "server=192.168.73.10;User Id=sa;Password=P@ssword1", "User")
 [Environment]::SetEnvironmentVariable("RAVENDB4_URL", "https://raven1.wallaceturner.com:8080/", "User")
 [Environment]::SetEnvironmentVariable("RAVENDB_CERT_CN", "*.wallaceturner.com", "User")
-[Environment]::SetEnvironmentVariable("X_STREAM_CLIENT_SDK", "D:\aaa_development\x_stream_client_sdk", "User")
-[Environment]::SetEnvironmentVariable("TSMRMSGFILE", "D:\aaa_development\x_stream_client_sdk\bin\tsmr.msg", "User")
+
 [Environment]::SetEnvironmentVariable("investi_server_location", "wal@investi.com.au", "User")
 [Environment]::SetEnvironmentVariable("investi_server_pass", "", "User")
 
@@ -77,6 +79,11 @@ git remote set-url origin w_turner@bitbucket.org:fexglobal/mercaridirect.git
 git remote set-url --push origin w_turner@bitbucket.org:fexglobal/mercaridirect.git
 #git config --get remote.origin.url
 
+#dont use username for github.com - use for example
+git remote set-url origin git@github.com:wallaceturner/random.git
+
+#to test
+ssh -T git@github.com
 
 #vagrant
 #if after calling 'vagrant up' it launches a new VM instead of the existing VM you need to tell vagrant the id of the VM. 

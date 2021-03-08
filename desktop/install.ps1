@@ -58,7 +58,7 @@ vagrant plugin install vagrant-disksize
 #Visual Studio config
 #Tools -> Options -> Project and Solutions -> Web Projects: "Stop debugger when browser window is closed".
 
-#SourceTree/SSH setup
+#SourceTree/SSH setup  
 #open new PS window, navigate to home folder (`cd ~)
 ssh-keygen -t rsa -b 4096 -C "wallaceturner@gmail.com"
 #log into bitbucket using fex account (w.turner@fex.com.au) and upload new SSH key 

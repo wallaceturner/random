@@ -79,11 +79,14 @@ git remote set-url origin w_turner@bitbucket.org:fexglobal/mercaridirect.git
 git remote set-url --push origin w_turner@bitbucket.org:fexglobal/mercaridirect.git
 #git config --get remote.origin.url
 
-#dont use username for github.com - use for example
-git remote set-url origin git@github.com:wallaceturner/random.git
+#dont use username for github.com - instead it should contain the 'Host' field in ssh config (see https://gist.github.com/jexchan/2351996)
+git remote set-url origin git@github.com-wallaceturner:wallaceturner/random.git
 
 #to test
 ssh -T git@github.com
+
+#bamboo
+git remote set-url origin git@github.com-bamboo:bamboo-io/notification-pm.git
 
 #vagrant
 #if after calling 'vagrant up' it launches a new VM instead of the existing VM you need to tell vagrant the id of the VM. 

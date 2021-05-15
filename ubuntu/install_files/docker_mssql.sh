@@ -9,3 +9,7 @@ docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@sswor
 
 #staging
 docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssword1' -Q 'RESTORE DATABASE MercariDirectStaging FROM DISK = "/var/opt/mssql/backup/staging.bak" WITH MOVE "MercariDirectNightly" TO "/var/opt/mssql/data/MercariDirectStaging.mdf", MOVE "MercariDirectNightly_log" TO "/var/opt/mssql/data/MercariDirectStaging.ldf"'
+
+docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssword1' -Q 'RESTORE DATABASE MercariIM FROM DISK = "/var/opt/mssql/backup/backup.bak" WITH MOVE "MercariIM" TO "/var/opt/mssql/data/IntRateLive.mdf", MOVE "MercariIM_log" TO "/var/opt/mssql/data/IntRateLive.ldf"'
+
+docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssword1' -Q 'RESTORE DATABASE MercariDirectNightly FROM DISK = "/var/opt/mssql/backup/backup.bak" WITH MOVE "MercariDirectNightly" TO "/var/opt/mssql/data/MercariDirectNightly.mdf", MOVE "MercariDirectNightly_log" TO "/var/opt/mssql/data/MercariDirectNightly.ldf"'

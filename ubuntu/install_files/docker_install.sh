@@ -6,6 +6,9 @@ apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io -y
 usermod -aG docker $USER
 
+#How do I expose the docker API over TCP?
+#https://serverfault.com/questions/843296/how-do-i-expose-the-docker-api-over-tcp
+
 #docker run hello-world
 
 #remove a container

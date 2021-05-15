@@ -30,6 +30,8 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDtAMfEEoDrT1FX8Yf9Emx1J0C6D7YhtEbOCx
 apt-get install ufw -y
 ufw allow 22
 ufw allow 1433/tcp
+ufw allow 4243/tcp
+ufw allow 5858/tcp
 ufw --force enable
 
 apt update -y
@@ -43,8 +45,10 @@ apt -y  install gcc g++ make
 node --version
 
 
-#chmod +x /tmp/install_files/docker_install.sh
-#/tmp/install_files/docker_install.sh
+chmod +x /tmp/install_files/docker_install.sh
+/tmp/install_files/docker_install.sh
+
+
 
 #enable shared folders
 #https://gist.github.com/estorgio/0c76e29c0439e683caca694f338d4003

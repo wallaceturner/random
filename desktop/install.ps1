@@ -18,11 +18,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 choco feature enable -n allowGlobalConfirmation
 choco install notepadplusplus googlechrome -y
-choco install vscode msbuild.communitytasks skype git putty sourcetree winscp keepass nodejs-lts qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux resharper nordvpn whatsapp paint.net openconnect-gui signal tixati vlc processhacker screentogif
+choco install vscode msbuild.communitytasks skype git putty sourcetree winscp keepass qpdf telegram 7zip processhacker google-backup-and-sync mremoteng conemu f.lux whatsapp paint.net openconnect-gui signal tixati vlc processhacker screentogif treesizefree
+choco install nordvpn 
+choco install nodejs --version=12.22.1
 choco install dotnetcore-sdk
 choco install virtualbox vagrant -y
 choco install visualstudio2019community --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
-choco install adobereader treesizefree
+choco install adobereader resharper 
 #Invoke-WebRequest -Uri http://us.download.nvidia.com/Windows/347.88/347.88-desktop-win8-win7-winvista-64bit-international-whql.exe -OutFile ./347.88-desktop-win8-win7-winvista-64bit-international-whql.exe
 
 #optional
@@ -105,7 +107,7 @@ New-NetFirewallRule -DisplayName '59166' -Profile 'Any' -Direction Inbound -Acti
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.20`t fexglobitefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.22`t fexglobetefow01.fglau.com"
 Add-Content C:\Windows\System32\drivers\etc\hosts "10.160.4.10`t fexglobfow01.fglau.com"
-Add-Content C:\Windows\System32\drivers\etc\hosts "1192.168.83.10`t ubuntu"
+Add-Content C:\Windows\System32\drivers\etc\hosts "192.168.83.10`t ubuntu"
 cp F:\Dropbox\docs\confCons.xml C:\Users\vagrant\AppData\Roaming\mRemoteNG
 cp F:\Dropbox\docs\confCons.xml F:\software\verified
 
@@ -136,7 +138,7 @@ https://superuser.com/questions/958109/how-to-prevent-windows-10-waking-from-sle
 
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\settings.json F:\Dropbox\docs\vscode\settings.json
 cmd /c mklink C:\Users\vooos\AppData\Roaming\Code\User\keybindings.json F:\Dropbox\docs\vscode\keybindings.json
-cmd /c mklink /d C:\Users\vooos\.ssh F:\Dropbox\docs\ssh
+cmd /c mklink /d C:\Users\%username%\.ssh D:\GoogleDrive\docs\ssh
 
 #https://community.atlassian.com/t5/Sourcetree-questions/Pageant-doesn-t-save-keys/qaq-p/142855
 

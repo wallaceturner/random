@@ -9,10 +9,9 @@ Vagrant.configure("2") do |config|
   
   # Box Settings  
   config.vm.box = "ubuntu/bionic64"
-  config.vm.network "private_network", ip: "192.168.83.10"
-  config.vm.network "forwarded_port", guest: 22, host: 22
+  config.vm.network "private_network", ip: "192.168.83.10"  
   config.vm.network "forwarded_port", guest: 1433, host: 1433
-  config.vm.network "forwarded_port", guest: 3306, host: 3306
+  config.vm.network "forwarded_port", guest: 3306, host: 3306    
   config.vm.network "forwarded_port", guest: 27017, host: 27017
   config.disksize.size = '200GB'
   #echo $UID
@@ -25,15 +24,15 @@ Vagrant.configure("2") do |config|
   
   # Provider Settings
   config.vm.provider "virtualbox" do |vb|    
-	vb.memory = 4096
+	vb.memory = 2048
 	vb.name = "ubuntu.docker"
-    vb.cpus = 4
+    vb.cpus = 1
 	vb.customize ["storageattach", :id,"--storagectl", "IDE","--port", "0", "--device", "1","--type", "dvddrive","--medium", "emptydrive"]   
   end
 
 
   
-  #config.vm.provision "file", source: "./install_files", destination: "/tmp/install_files"  
+  config.vm.provision "file", source: "./install_files", destination: "/tmp/install_files"  
   config.vm.provision "shell", path: "install.sh"
 end
 

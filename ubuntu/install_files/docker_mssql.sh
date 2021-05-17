@@ -1,4 +1,6 @@
 docker run --name mssql -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@ssword1' -p 1433:1433 -d -v sqldata:/var/opt/mssql mcr.microsoft.com/mssql/server:2017-latest 
+#to restart automatically (e.g. on boot)
+docker update --restart=always <container id>
 docker exec -it mssql mkdir /var/opt/mssql/backup
 docker cp shared/backup.bak mssql:/var/opt/mssql/backup
 

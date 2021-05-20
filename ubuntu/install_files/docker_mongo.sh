@@ -1,4 +1,4 @@
-docker run --name mongodb -p 27017:27017 -d mongo:4.4.1-bionic
+docker run --name mongodb -p 27017:27017 -d mongo:4.4.6-bionic
 
 docker exec -it mssql mkdir /var/opt/mssql/backup
 docker cp shared/backup.bak mssql:/var/opt/mssql/backup

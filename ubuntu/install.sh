@@ -44,9 +44,17 @@ apt -y  install gcc g++ make
 
 node --version
 
+#setup swapfile (if not exists; check with free -h) https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-18-04
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
 
 chmod +x /tmp/install_files/docker_install.sh
 /tmp/install_files/docker_install.sh
+
 
 
 

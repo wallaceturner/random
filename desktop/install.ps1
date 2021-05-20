@@ -33,6 +33,8 @@ choco install obs-studio -y
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 code --install-extension jpoissonnier.vscode-styled-components
 code --install-extension vscode-icons-team.vscode-icons
+code --install-extension rangav.vscode-thunder-client
+code --install-extension donjayamanne.githistory
 
 #npm
 npm i typescript -g
@@ -80,6 +82,10 @@ git remote set-url --push origin w_turner@bitbucket.org:fexglobal/mercaridirect.
 #dont use username for github.com - instead it should contain the 'Host' field in ssh config (see https://gist.github.com/jexchan/2351996)
 git remote set-url origin git@github.com-wallaceturner:wallaceturner/random.git
 
+#for github wallaceturner repos:
+git config user.email "wallaceturner@gmail.com"
+git config user.name "wallace_turner"
+
 #to test
 ssh -T git@github.com
 
@@ -114,7 +120,9 @@ cp D:\GoogleDrive\docs\confCons.xml F:\software\verified
 #delete .vs folder if you get red underlines in visual studio
 https://stackoverflow.com/questions/21098333/visual-studio-compiles-fine-but-still-shows-red-lines
 
-#remove conemu global hotkey for backtick
+#conemu setup:
+# remove global hotkey for backtick `Settings -> Keys&Macros`
+# modify powershell task: `Startup -> Tasks` select '{Shells:Powershell.exe} enter following into text area  -new_console:d:D:\aaa_development powershell.exe
 
 vs code: keyboard shortcuts 'expand selection' 'saveAll'
 

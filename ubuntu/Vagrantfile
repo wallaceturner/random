@@ -47,5 +47,6 @@ end
 #shrink the VM which increased due to copying files. ref https://superuser.com/questions/529149/how-to-compact-virtualboxs-vdi-file-size
 #on linux guest run
 #   dd if=/dev/zero of=/var/tmp/bigemptyfile bs=4096k ; rm /var/tmp/bigemptyfile
+#	sudo poweroff
 # on windows host run
 #   ."C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifymedium --compact D:\virtual_box_vdis\ubuntu.docker\ubuntu-bionic-18.04-cloudimg.vdi

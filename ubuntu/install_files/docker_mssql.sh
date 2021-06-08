@@ -14,4 +14,9 @@ docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@sswor
 
 docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssword1' -Q 'RESTORE DATABASE MercariIM FROM DISK = "/var/opt/mssql/backup/backup.bak" WITH MOVE "MercariIM" TO "/var/opt/mssql/data/IntRateLive.mdf", MOVE "MercariIM_log" TO "/var/opt/mssql/data/IntRateLive.ldf"'
 
-docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssword1' -Q 'RESTORE DATABASE MercariDirectNightly FROM DISK = "/var/opt/mssql/backup/backup.bak" WITH MOVE "MercariDirectNightly" TO "/var/opt/mssql/data/MercariDirectNightly.mdf", MOVE "MercariDirectNightly_log" TO "/var/opt/mssql/data/MercariDirectNightly.ldf"'
+
+
+#to restore prod db
+#make sure db does not exist first. 
+docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssword1' -Q 'RESTORE DATABASE WoolLive FROM DISK = "/var/opt/mssql/backup/backup.bak" WITH MOVE "MercariDirectNightly" TO "/var/opt/mssql/data/WoolLive.mdf", MOVE "MercariDirectNightly_log" TO "/var/opt/mssql/data/WoolLive.ldf"'
+
